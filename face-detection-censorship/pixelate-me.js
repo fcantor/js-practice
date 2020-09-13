@@ -1,5 +1,3 @@
-const SIZE = 10;
-const SCALE = 1.35;
 // grab classes
 const video = document.querySelector('.webcam');
 const canvas = document.querySelector('.video');
@@ -11,6 +9,22 @@ const faceCtx = faceCanvas.getContext('2d');
 
 // make new face detector
 const faceDetector = new window.FaceDetector({ fastMode: true });
+
+// grab sliding scale elements
+const optionsInputs = document.querySelectorAll('.controls input[type="range"]');
+
+// vars for scaling and sizing pixelation on video
+const options = {
+    SIZE: 10,
+    SCALE: 1.35,
+}
+
+// function that scales and resizes the pixelation
+function handleOption(event) {
+    const { value, name } = event.currentTarget;
+    options[name] = parseFloat(value);
+}
+optionsInputs.forEach(input => input.addEventListener('input', handleOption));
 
 // write a function that will populate the user's video
 async function populateVideo() {
@@ -65,18 +79,18 @@ function censor({ boundingBox: face }){
         // 4 draw arguments
         face.x, // where to start drawing the x and y
         face.y,
-        SIZE,
-        SIZE,
+        options.SIZE,
+        options.SIZE,
     );
     // draw the small face back on, but scaled up
-    const width = face.width * SCALE;
-    const height = face.height * SCALE;
+    const width = face.width * options.SCALE;
+    const height = face.height * options.SCALE;
     faceCtx.drawImage(
         faceCanvas, // source
         face.x, // where we start the source pull from
         face.y,
-        SIZE,
-        SIZE,
+        options.SIZE,
+        options.SIZE,
         // drawing arguments
         face.x - (width - face.width) / 2,
         face.y - (height - face.height) / 2,

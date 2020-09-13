@@ -84,14 +84,29 @@ fieldset {
   border: 1px solid black;
 }
 
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 300px;
+  height: 5px;
+  padding: 0;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
 input:not([type="checkbox"]):not([type="radio"]), textarea, select {
   display: block;
   padding: 1rem;
-  border: 1px solid var(--grey);
+  border: 1px solid var(--pink);
 }
 
 .success {
   border: 1px solid red;
+}
+
+label {
+  color: #F3B401;
 }
 
 h1,
