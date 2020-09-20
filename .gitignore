@@ -1,0 +1,6 @@
+# dependencies
+.vscode
+face-detection-censorship/.parcel-cache/
+face-detection-censorship/dist/
+face-detection-censorship/node_modules/
+face-detection-censorship/package-lock.json
